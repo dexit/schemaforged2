@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini DB Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/reactflow@11.11.3/dist/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-bg': '#1a1a1a',
+              'brand-surface': '#2a2a2a',
+              'brand-border': '#444444',
+              'brand-primary': '#4f46e5',
+              'brand-primary-hover': '#4338ca',
+              'brand-text-primary': '#e5e7eb',
+              'brand-text-secondary': '#9ca3af',
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #1a1a1a;
+        font-family: sans-serif;
+        overflow-y: hidden; /* Prevent body scroll */
+      }
+      .react-flow__panel {
+        bottom: 15px !important;
+        top: auto !important;
+      }
+      /* Styling for highlight.js */
+      .hljs {
+        background: transparent !important;
+      }
+      #error-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        z-index: 9999;
+        padding: 40px;
+        font-family: monospace;
+        font-size: 16px;
+        white-space: pre-wrap;
+        overflow-y: auto;
+      }
+      #error-overlay h1 {
+        color: #ff5555;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.8.0",
+    "reactflow": "https://esm.sh/reactflow@11.11.3",
+    "react-markdown": "https://esm.sh/react-markdown@9",
+    "highlight.js": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/es/highlight.min.js",
+    "dagre": "https://esm.sh/dagre@^0.8.5"
+  }
+}
+</script>
+<script>
+  // Global Error Handler to catch issues before React loads
+  window.onerror = function(message, source, lineno, colno, error) {
+    const root = document.getElementById('root');
+    const overlay = document.getElementById('error-overlay');
+    if (root) root.style.display = 'none'; // Hide the broken app
+    if (overlay) {
+      overlay.style.display = 'block';
+      overlay.innerHTML = `
+        <h1>Application failed to load</h1>
+        <p>There was a critical error that prevented the application from starting. This is often a syntax error.</p>
+        <br>
+        <p><strong>Error:</strong> ${message}</p>
+        <p><strong>Source:</strong> ${source}</p>
+        <p><strong>Location:</strong> Line ${lineno}, Column ${colno}</p>
+        <br>
+        <p>Please check the console for more details.</p>
+      `;
+    }
+    return true; // Prevents the default browser error handling
+  };
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="error-overlay"></div>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

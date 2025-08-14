@@ -1,0 +1,6 @@
+{
+  "name": "Gemini DB Designer",
+  "description": "An application that uses AI to generate database schemas and SQL from natural language descriptions.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

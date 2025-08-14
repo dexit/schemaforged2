@@ -1,0 +1,45 @@
+
+import { DbType } from '../types';
+
+export const DB_DATA_TYPES: Record<DbType, string[]> = {
+  postgresql: [
+    'TEXT',
+    'VARCHAR',
+    'INTEGER',
+    'BIGINT',
+    'SERIAL',
+    'BIGSERIAL',
+    'BOOLEAN',
+    'DATE',
+    'TIMESTAMP',
+    'TIMESTAMPTZ',
+    'JSONB',
+    'UUID',
+    'DECIMAL',
+    'NUMERIC',
+    'REAL',
+    'DOUBLE PRECISION',
+  ],
+  mysql: [
+    'TEXT',
+    'VARCHAR(255)',
+    'INT',
+    'BIGINT',
+    'BOOLEAN',
+    'DATE',
+    'DATETIME',
+    'TIMESTAMP',
+    'JSON',
+    'DECIMAL(10, 2)',
+    'FLOAT',
+    'DOUBLE',
+    'BLOB',
+  ],
+  sqlite: [
+    'TEXT',
+    'INTEGER',
+    'REAL',
+    'BLOB',
+    'NUMERIC',
+  ],
+};
